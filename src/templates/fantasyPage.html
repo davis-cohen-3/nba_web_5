@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> Type in names of players and click submit to add them to your team. (first name (capitalize first letter)) (last name (capitalize first letter))</h1>
+<form action='addPlayer' method="POST">{%csrf_token%}
+    <div class="input-group">
+        <input type="search" class="form-control rounded" id="playerName" name="playerName_" placeholder="Lebron James" aria-label="Search" aria-describedby="search-addon" />
+    </div>
+    <div class="col-auto my-1">
+        <button type="submit" class="btn btn-primary">Add player</button>
+    </div>
+</form>
+ <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">name</th>
+        <th scope="col">age</th>
+        <th scope="col">scoring</th>
+        <th scope="col">passing</th>
+        <th scope="col">rebounding</th>
+        <th scope="col">off & def rating</th>
+        <th scope="col">efficiency</th>
+        <th scope="col">turnover_grade ability</th>
+        <th scope="col">overall</th>
+        <th scope="col">salary</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for team in team_ %}
+            <tr>
+                <th scope="row">{{team.id}}</th>
+                <td>{{team.name}}</td>
+                <td>{{team.age}}</td>
+                <td>{{team.scoring_grade}}</td>
+                <td>{{team.passing_grade}}</td>
+                <td>{{team.rebounding_grade}}</td>
+                <td>{{team.rating}}</td>
+                <td>{{team.efficiency}}</td>
+                <td>{{team.turnover_grade}}</td>
+                <td>{{team.overall}}</td>
+                <td>{{team.salary}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+<div class="container-sm">
+    <h1>Remaining salary: {{cap_space}}</h1>
+</div>
+    {%if player_count is 0 %}
+        <form action='submit_team' method="POST">{%csrf_token%}
+            <button type="submit" class="btn btn-success">Submit team</button>
+        </form>
+    {%else%}
+        <div class="container-sm">
+            <h1>Number of players needed: {{player_count}}</h1>
+        </div>
+    {%endif%}
+{% endblock %}

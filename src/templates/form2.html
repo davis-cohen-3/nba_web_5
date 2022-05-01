@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action='queried2' method='POST'>{%csrf_token%}
+    <h1> FILL IN THE FORM TO FIND DATA ON NBA QUERIES 222</h1>
+    <div class="form-check1">
+        <h5> Pick a statistic </h5>
+            <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>PPG (points)
+            <label class="form-check-label" for="radio1"></label>
+            <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2" checked>APG (assists)
+            <label class="form-check-label" for="radio2"></label>
+            <input type="radio" class="form-check-input" id="radio3" name="optradio" value="option3" checked>RPG (rebounds)
+            <label class="form-check-label" for="radio3"></label>
+            <input type="radio" class="form-check-input" id="radio4" name="optradio" value="option4" checked>BPG (blocks)
+            <label class="form-check-label" for="radio4"></label>
+            <input type="radio" class="form-check-input" id="radio5" name="optradio" value="option5" checked>SPG (steals)
+            <label class="form-check-label" for="radio5"></label>
+            <input type="radio" class="form-check-input" id="radio6" name="optradio" value="option6" checked>3P% (3point percent)
+            <label class="form-check-label" for="radio6"></label>
+            <input type="radio" class="form-check-input" id="radio7" name="optradio" value="option7" checked>2P% (2point percent)
+            <label class="form-check-label" for="radio7"></label>
+            <input type="radio" class="form-check-input" id="radio8" name="optradio" value="option8" checked>FG% (field goal percent)
+            <label class="form-check-label" for="radio8"></label>
+            <input type="radio" class="form-check-input" id="radio9" name="optradio" value="option9" checked>OFF Rating 
+            <label class="form-check-label" for="radio9"></label>
+            <input type="radio" class="form-check-input" id="radio10" name="optradio" value="option10" checked>DEF Rating% 
+            <label class="form-check-label" for="radio10"></label>
+    </div>
+    <h1> Now enter a value for which you want your query to be greater than</h1>
+    <div class="form-check2">
+            <h5>Value to be greater than</h5>
+            <label for="teamName" class="col-sm-2 col-form-label">Value</label>
+            <div class="col-sm-10">
+                <input type="team_name" class="form-control" id="teamName" name="value_" placeholder="100">
+            </div>
+    </div>
+    <h1> Now enter another stat where you want to see the leaders in</h1>
+    <div class="form-check2">
+        <h5> Pick a stat (check only one box)</h5>
+        <input type="radio" class="form-check-input" id="radio11" name="optradio1" value="option11" checked>PPG (points)
+        <label class="form-check-label" for="radio11"></label>
+        <input type="radio" class="form-check-input" id="radio22" name="optradio1" value="option22" checked>APG (assists)
+        <label class="form-check-label" for="radio22"></label>
+        <input type="radio" class="form-check-input" id="radio33" name="optradio1" value="option33" checked>RPG (rebounds)
+        <label class="form-check-label" for="radio33"></label>
+        <input type="radio" class="form-check-input" id="radio44" name="optradio1" value="option44" checked>BPG (blocks)
+        <label class="form-check-label" for="radio44"></label>
+        <input type="radio" class="form-check-input" id="radio55" name="optradio1" value="option55" checked>SPG (steals)
+        <label class="form-check-label" for="radio55"></label>
+        <input type="radio" class="form-check-input" id="radio66" name="optradio1" value="option66" checked>3P% (3point percent)
+        <label class="form-check-label" for="radio66"></label>
+        <input type="radio" class="form-check-input" id="radio77" name="optradio1" value="option77" checked>2P% (2point percent)
+        <label class="form-check-label" for="radio77"></label>
+
+    </div>
+    <div class="col-auto my-1">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+{{df|safe}}
+{% endblock %}

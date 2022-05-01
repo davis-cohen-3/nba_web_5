@@ -1,6 +1,38 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Hello World!!!! DAVIS</h1>
-
+<h1> FILL IN THE FORM TO FIND DATA ON NBA QUERIES</h1>
+<form action='queried' method='POST'>{%csrf_token%}
+    <div class="form-check1">
+        <h5> Pick a statistic to see leaders in</h5>
+        <div class="form-check">
+            <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>PPG (points)
+            <label class="form-check-label" for="radio1"></label>
+            <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2" checked>APG (assists)
+            <label class="form-check-label" for="radio2"></label>
+            <input type="radio" class="form-check-input" id="radio3" name="optradio" value="option3" checked>RPG (rebounds)
+            <label class="form-check-label" for="radio3"></label>
+            <input type="radio" class="form-check-input" id="radio4" name="optradio" value="option4" checked>BPG (blocks)
+            <label class="form-check-label" for="radio4"></label>
+            <input type="radio" class="form-check-input" id="radio5" name="optradio" value="option5" checked>SPG (steals)
+            <label class="form-check-label" for="radio5"></label>
+            <input type="radio" class="form-check-input" id="radio6" name="optradio" value="option6" checked>3P% (3point percent)
+            <label class="form-check-label" for="radio6"></label>
+            <input type="radio" class="form-check-input" id="radio7" name="optradio" value="option7" checked>2P% (2point percent)
+            <label class="form-check-label" for="radio7"></label>
+        </div>
+    </div>
+    <div class="form-check2">
+        <h5>TEAM (leave blank if you want to query the entire league)</h5>
+        <label for="teamName" class="col-sm-2 col-form-label">TEAM NAME (ex: lakers)</label>
+        <div class="col-sm-10">
+            <input type="team_name" class="form-control" id="teamName" name="teamName" placeholder="knicks">
+        </div>
+    </div>
+    
+    <div class="col-auto my-1">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+{{df|safe}}
 {% endblock %}

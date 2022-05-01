@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Roster</h2>
+<table class="table" id="table1">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">name</th>
+        <th scope="col">age</th>
+        <th scope="col">scoring</th>
+        <th scope="col">passing</th>
+        <th scope="col">rebounding</th>
+        <th scope="col">off & def rating</th>
+        <th scope="col">efficiency</th>
+        <th scope="col">turnover_grade ability</th>
+        <th scope="col">overall</th>
+        <th scope="col">salary</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for team in team_ %}
+            <tr>
+                <th scope="row">{{team.id}}</th>
+                <td>{{team.name}}</td>
+                <td>{{team.age}}</td>
+                <td>{{team.scoring_grade}}</td>
+                <td>{{team.passing_grade}}</td>
+                <td>{{team.rebounding_grade}}</td>
+                <td>{{team.rating}}</td>
+                <td>{{team.efficiency}}</td>
+                <td>{{team.turnover_grade}}</td>
+                <td>{{team.overall}}</td>
+                <td>{{team.salary}}</td>
+            </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+<div class="container-sm">
+    <h1>Remaining salary: {{cap_space}}</h1>
+</div>
+<h2>Team Chart Report</h2>
+<table class="table" id="table1">
+    <thead>
+        <tr>
+          <th scope="col">average age</th>
+          <th scope="col">average scoring</th>
+          <th scope="col">average passing</th>
+          <th scope="col">average rebounding</th>
+          <th scope="col">average off & def rating</th>
+          <th scope="col">average efficiency</th>
+          <th scope="col">average turnover_grade ability</th>
+          <th scope="col">average overall</th>
+          <th scope="col">total salary</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>{{team_age}}</td>
+                <td>{{team_scoring}}</td>
+                <td>{{team_passing}}</td>
+                <td>{{team_rebounding}}</td>
+                <td>{{team_rtg}}</td>
+                <td>{{team_eff}}</td>
+                <td>{{team_turnOver}}</td>
+                <td>{{team_overall}}</td>
+                <td>{{total_cap}}</td>
+            </tr>
+    </tbody>
+</table> 
+<h2>Team Summary </h2>
+<div class="container-fluid">
+    <h1>Pros:</h1>
+    <ul class="list-group">
+        {%if team_age > 25 %}
+            <li class="list-group-item">Older team meaning will have good experience</li>
+        {% endif %}
+        {%if team_scoring > 7 %}
+            <li class="list-group-item">High scoring team</li>
+        {% endif %}
+        {%if team_passing > 7 %}
+            <li class="list-group-item">Selfless team that passes well</li>
+        {% endif %}
+        {%if team_rebounding > 7 %}
+            <li class="list-group-item">Will outrebound most teams</li>
+        {% endif %}
+        {%if team_rtg >= 8 %}
+            <li class="list-group-item">High offensive and defensive rating</li>
+        {% endif %}
+        {%if team_turnOver >= 8 %}
+            <li class="list-group-item">Team creates a lot of turnovers</li>
+        {% endif %}
+    </ul>
+    <h1>Cons:</h1>
+    <ul class="list-group">
+        {%if team_age <= 25 %}
+            <li class="list-group-item">Younger team meaning will have little experience, however, bright future</li>
+        {% endif %}
+        {%if team_scoring <= 7 %}
+            <li class="list-group-item">Low scoring team</li>
+        {% endif %}
+        {%if team_passing <= 7 %}
+            <li class="list-group-item">Selfish team that passes poorly</li>
+        {% endif %}
+        {%if team_rebounding <= 7 %}
+            <li class="list-group-item">Will get outrebounded by most teams</li>
+        {% endif %}
+        {%if team_rtg < 8 %}
+            <li class="list-group-item">Low offensive and defensive rating</li>
+        {% endif %}
+        {%if team_turnOver < 8 %}
+            <li class="list-group-item">Team creates few  turnovers</li>
+        {% endif %}
+    </ul>
+    <h1>Team Overall:</h1>
+        <div class='container-sm'>
+            {% if team_overall < 8.3 %}
+                <h2>Team has lower than average overall</h2>
+            {% else %}
+                <h2>Team has higher than average overall</h2>
+            {% endif %}
+            
+        </div> 
+</div>
+{% endblock %}
