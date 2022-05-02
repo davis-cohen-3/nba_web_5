@@ -36,6 +36,7 @@ class team (models.Model):
     salary = models.IntegerField(default=0)
 
 class user_created_teams (models.Model):
+    team_name = models.CharField(_('Name'),max_length=255,default="")
     mean_age = models.FloatField(default=18)
     mean_scoring = models.FloatField(default=0)
     mean_passing = models.FloatField(default=0)

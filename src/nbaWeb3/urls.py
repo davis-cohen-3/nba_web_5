@@ -16,8 +16,10 @@ Including another URLconf
 from argparse import Namespace
 from django.contrib import admin
 from django.urls import include, path
+from . import views
 
 urlpatterns = [
+    path('', views.index, name='home'),
     path('users/', include('users.urls')),
     path('analytics/', include('analytics.urls')),
     path('admin/', admin.site.urls),

@@ -3,6 +3,7 @@ from curses.ascii import HT
 from django.shortcuts import HttpResponse, render
 from .models import*
 import pandas as pd
+import json
 #from django.views.generic import TemplateView # Import TemplateView
 
 # Create your views here.
@@ -170,15 +171,20 @@ def query(request):
         if team_checker2==1:
             df1=df[df['team']==team_dest]
             df2= df1.nlargest(n=10,columns=['pointsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
+            # mydict = {
+            #     "df": df2.to_html()
+            # }
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
         else:
             df1=df.nlargest(n=10,columns=['pointsPerGame'])
-            mydict = {
-                "df": df1.to_html()
-            }
-        return render(request, 'home.html', context=mydict)
+            json_records = df1.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+        return render(request, 'home.html', context)
 
     ##apg
     if _apg==1:
@@ -186,60 +192,68 @@ def query(request):
         if team_checker2==1:
             df1=df[df['team']==team_dest]
             df2= df1.nlargest(n=10,columns=['assistsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            } 
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
         else:
             df1=df.nlargest(n=10,columns=['assistsPerGame'])
-            mydict = {
-                "df": df1.to_html()
-            }
-        return render(request, 'home.html', context=mydict)
+            json_records = df1.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+        return render(request, 'home.html', context)
 
     #rpg
     if _rpg==1:
         if team_checker2==1:
             df1=df[df['team']==team_dest]
             df2= df1.nlargest(n=10,columns=['reboundsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            } 
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
         else:
             df1=df.nlargest(n=10,columns=['reboundsPerGame'])
-            mydict = {
-                "df": df1.to_html()
-            }
-        return render(request, 'home.html', context=mydict)
+            json_records = df1.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+        return render(request, 'home.html', context)
     
     #spg
     if _spg==1:
         if team_checker2==1:
             df1=df[df['team']==team_dest]
             df2= df1.nlargest(n=10,columns=['stealPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            } 
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
         else:
             df1=df.nlargest(n=10,columns=['stealPerGame'])
-            mydict = {  
-                "df": df1.to_html()
-            }
-        return render(request, 'home.html', context=mydict)
+            json_records = df1.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+        return render(request, 'home.html', context)
 
     #bpg
     if _bpg==1:
         if team_checker2==1:
             df1=df[df['team']==team_dest]
             df2= df1.nlargest(n=10,columns=['blocksPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            } 
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
         else:
             df1=df.nlargest(n=10,columns=['blocksPerGame'])
-            mydict = {
-                "df": df1.to_html()
-            }
-        return render(request, 'home.html', context=mydict)
+            json_records = df1.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+        return render(request, 'home.html', context)
 
     #3pp
     if __3pp==1:
@@ -247,30 +261,34 @@ def query(request):
         if team_checker2==1:
             df1=df2[df2['team']==team_dest]
             df3= df1.nlargest(n=10,columns=['threePointPercent'])
-            mydict = {
-                "df": df3.to_html()
-            } 
+            json_records = df3.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
         else:
             df1=df2.nlargest(n=10,columns=['threePointPercent'])
-            mydict = {
-                "df": df1.to_html()
-            }
-        return render(request, 'home.html', context=mydict)
+            json_records = df1.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+        return render(request, 'home.html', context)
 
     #2pp
     if __2pp==1:
         if team_checker2==1:
             df1=df[df['team']==team_dest]
             df2= df1.nlargest(n=10,columns=['twoPointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            } 
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
         else:
             df1=df.nlargest(n=10,columns=['twoPointPercent'])
-            mydict = {
-                "df": df1.to_html()
-            }
-        return render(request, 'home.html', context=mydict)
+            json_records = df1.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+        return render(request, 'home.html', context)
 
     #fgp
     # if _fgp==1:
@@ -328,48 +346,67 @@ def query2(request):
         _bpg1=False
         __3pp1_=False
         __2pp1_=False
-
+        notFilled=0
         #first stat to compare
         if stat_1=="option1":
+            notFilled+=1
             ppg1=True
         if stat_1=="option2":
+            notFilled+=1
             apg1=True
         if stat_1=="option3":
+            notFilled+=1
             rpg1=True
         if stat_1=="option4":
+            notFilled+=1
             spg1=True
         if stat_1=="option5":
+            notFilled+=1
             bpg1=True
         if stat_1=="option6":
+            notFilled+=1
             _3pp1=True
         if stat_1=="option7":
+            notFilled+=1
             _2pp1=True
         if stat_1=="option8":
+            notFilled+=1
             fgp1=True
         if stat_1=="option9":
+            notFilled+=1
             ofrtg1=True
         if stat_1=="option10":
+            notFilled+=1
             dfrtg1=True
         #number
         val = int(request.POST.get('value_'))
         print(val)
         #second stat (to find leaders in)
         if stat_2=="option11":
+            notFilled+=1
             _ppg1=True
         if stat_2=="option22":
+            notFilled+=1
             _apg1=True
         if stat_2=="option33":
+            notFilled+=1
             _rpg1=True
         if stat_2=="option44":
+            notFilled+=1
             _spg1=True
         if stat_2=="option55":
+            notFilled+=1
             _bpg1=True
         if stat_2=="option66":
+            notFilled+=1
             __3pp1_=True
         if stat_2=="option77":
+            notFilled+=1
             __2pp1_=True
         
         print(request.POST.get('optradio1'))
+    if(notFilled!=2):
+        return render(request, 'form2.html')
 
         # fgp2 = request.POST.get('FG%1') # not working
         # ofrtg2 = request.POST.get('OFRTG1') #not working
@@ -470,52 +507,59 @@ def query2(request):
         if point2==1:
             df1= df[df["pointsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['pointsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if assists2==1:
             df1= df[df["pointsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['assistsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if rebounds2==1:
             df1= df[df["pointsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['reboundsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if steal2==1:
             df1= df[df["pointsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['stealPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if blocks2==1:
             df1= df[df["pointsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['blocksPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if threePoint2==1:
             df1= df[df["pointsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['threePointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if twoPoint2==1:
             df1= df[df["pointsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['twoPointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
     
     #assists1 true
 
@@ -523,468 +567,529 @@ def query2(request):
         if point2==1:
             df1= df[df["assistsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['pointsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if assists2==1:
             df1= df[df["assistsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['assistsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if rebounds2==1:
             df1= df[df["assistsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['reboundsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if steal2==1:
             df1= df[df["assistsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['stealPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if blocks2==1:
             df1= df[df["assistsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['blocksPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if threePoint2==1:
             df1= df[df["assistsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['threePointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if twoPoint2==1:
             df1= df[df["assistsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['twoPointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
 
     #rebounds1 true
     if rebounds1==1:
         if point2==1:
             df1= df[df["reboundsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['pointsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if assists2==1:
             df1= df[df["reboundsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['assistsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if rebounds2==1:
             df1= df[df["reboundsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['reboundsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if steal2==1:
             df1= df[df["reboundsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['stealPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if blocks2==1:
             df1= df[df["reboundsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['blocksPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if threePoint2==1:
             df1= df[df["reboundsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['threePointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if twoPoint2==1:
             df1= df[df["reboundsPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['twoPointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
 
     #steals1 true
     if steal1==1:
         if point2==1:
             df1= df[df["stealPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['pointsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if assists2==1:
             df1= df[df["stealPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['assistsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if rebounds2==1:
             df1= df[df["stealPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['reboundsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if steal2==1:
             df1= df[df["stealPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['stealPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if blocks2==1:
             df1= df[df["stealPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['blocksPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if threePoint2==1:
             df1= df[df["stealPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['threePointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if twoPoint2==1:
             df1= df[df["stealPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['twoPointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
 
     #blocks1 true
     if blocks1==1:
         if point2==1:
             df1= df[df["blocksPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['pointsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if assists2==1:
             df1= df[df["blocksPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['assistsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if rebounds2==1:
             df1= df[df["blocksPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['reboundsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if steal2==1:
             df1= df[df["blocksPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['stealPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if blocks2==1:
             df1= df[df["blocksPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['blocksPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if threePoint2==1:
             df1= df[df["blocksPerGame"]>val]
             df2 = df1.nlargest(n=10,columns=['threePointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if twoPoint2==1:
             df1= df[df["blocksPerGame"]>val]
-            df2 = df1.nlargest(n=10,columns=['twoPointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
 
     #2point percent true
     if twoPoint1==1:
         if point2==1:
             df1= df[df["twoPointPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['pointsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if assists2==1:
             df1= df[df["twoPointPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['assistsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if rebounds2==1:
             df1= df[df["twoPointPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['reboundsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if steal2==1:
             df1= df[df["twoPointPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['stealPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if blocks2==1:
             df1= df[df["twoPointPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['blocksPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if threePoint2==1:
             df1= df[df["twoPointPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['threePointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if twoPoint2==1:
             df1= df[df["twoPointPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['twoPointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
 
     #3point percent true 
     if threePoint1==1:
         if point2==1:
             df1= df[df["threePointPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['pointsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if assists2==1:
             df1= df[df["threePointPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['assistsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if rebounds2==1:
             df1= df[df["threePointPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['reboundsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if steal2==1:
             df1= df[df["threePointPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['stealPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if blocks2==1:
             df1= df[df["threePointPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['blocksPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if threePoint2==1:
             df1= df[df["threePointPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['threePointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if twoPoint2==1:
             df1= df[df["threePointPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['twoPointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
 
     #offrtg1 true 
     if offRating1==1:
         if point2==1:
             df1= df[df["offrtg"]>val]
             df2 = df1.nlargest(n=10,columns=['pointsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if assists2==1:
             df1= df[df["offrtg"]>val]
             df2 = df1.nlargest(n=10,columns=['assistsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if rebounds2==1:
             df1= df[df["offrtg"]>val]
             df2 = df1.nlargest(n=10,columns=['reboundsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if steal2==1:
             df1= df[df["offrtg"]>val]
             df2 = df1.nlargest(n=10,columns=['stealPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if blocks2==1:
             df1= df[df["offrtg"]>val]
             df2 = df1.nlargest(n=10,columns=['blocksPerGame'])
             mydict = {
                 "df": df2.to_html()
             }
-            return render(request, 'form2.html', context=mydict)
+            return render(request, 'form2.html', context)
         if threePoint2==1:
             df1= df[df["offrtg"]>val]
             df2 = df1.nlargest(n=10,columns=['threePointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if twoPoint2==1:
             df1= df[df["offrtg"]>val]
             df2 = df1.nlargest(n=10,columns=['twoPointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
 
     #defrtg1 true
     if defRating1==1:
         if point2==1:
             df1= df[df["defrtg"]>val]
             df2 = df1.nlargest(n=10,columns=['pointsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if assists2==1:
             df1= df[df["defrtg"]>val]
             df2 = df1.nlargest(n=10,columns=['assistsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if rebounds2==1:
             df1= df[df["defrtg"]>val]
             df2 = df1.nlargest(n=10,columns=['reboundsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if steal2==1:
             df1= df[df["defrtg"]>val]
             df2 = df1.nlargest(n=10,columns=['stealPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if blocks2==1:
             df1= df[df["defrtg"]>val]
             df2 = df1.nlargest(n=10,columns=['blocksPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if threePoint2==1:
             df1= df[df["defrtg"]>val]
             df2 = df1.nlargest(n=10,columns=['threePointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if twoPoint2==1:
             df1= df[df["defrtg"]>val]
             df2 = df1.nlargest(n=10,columns=['twoPointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
 
     #fg1 true
     if fieldGoal1==1:
         if point2==1:
             df1= df[df["fieldGoalPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['pointsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if assists2==1:
             df1= df[df["fieldGoalPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['assistsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if rebounds2==1:
             df1= df[df["fieldGoalPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['reboundsPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if steal2==1:
             df1= df[df["fieldGoalPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['stealPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if blocks2==1:
             df1= df[df["fieldGoalPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['blocksPerGame'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if threePoint2==1:
             df1= df[df["fieldGoalPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['threePointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
         if twoPoint2==1:
             df1= df[df["fieldGoalPercent"]>val]
             df2 = df1.nlargest(n=10,columns=['twoPointPercent'])
-            mydict = {
-                "df": df2.to_html()
-            }
-            return render(request, 'form2.html', context=mydict)
+            json_records = df2.reset_index().to_json(orient ='records')
+            data = []
+            data = json.loads(json_records)
+            context = {'d': data}
+            return render(request, 'form2.html', context)
 
 
 

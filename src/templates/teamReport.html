@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Roster</h2>
-<table class="table" id="table1">
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style_analytics.css' %}">
+<div class-="header1">
+    <h3>Roster</h3>
+</div>
+<table class="table table-dark table-striped" id="table1">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -41,9 +45,10 @@
     <h1>Remaining salary: {{cap_space}}</h1>
 </div>
 <h2>Team Chart Report</h2>
-<table class="table" id="table1">
+<table class="table table-dark table-striped" id="table1">
     <thead>
         <tr>
+          <th scope="col">team name</th>
           <th scope="col">average age</th>
           <th scope="col">average scoring</th>
           <th scope="col">average passing</th>
@@ -57,6 +62,7 @@
     </thead>
     <tbody>
             <tr>
+                <td>{{team_name}}</td>
                 <td>{{team_age}}</td>
                 <td>{{team_scoring}}</td>
                 <td>{{team_passing}}</td>
@@ -71,56 +77,58 @@
 </table> 
 <h2>Team Summary </h2>
 <div class="container-fluid">
-    <h1>Pros:</h1>
-    <ul class="list-group">
-        {%if team_age > 25 %}
-            <li class="list-group-item">Older team meaning will have good experience</li>
-        {% endif %}
-        {%if team_scoring > 7 %}
-            <li class="list-group-item">High scoring team</li>
-        {% endif %}
-        {%if team_passing > 7 %}
-            <li class="list-group-item">Selfless team that passes well</li>
-        {% endif %}
-        {%if team_rebounding > 7 %}
-            <li class="list-group-item">Will outrebound most teams</li>
-        {% endif %}
-        {%if team_rtg >= 8 %}
-            <li class="list-group-item">High offensive and defensive rating</li>
-        {% endif %}
-        {%if team_turnOver >= 8 %}
-            <li class="list-group-item">Team creates a lot of turnovers</li>
-        {% endif %}
-    </ul>
-    <h1>Cons:</h1>
-    <ul class="list-group">
-        {%if team_age <= 25 %}
-            <li class="list-group-item">Younger team meaning will have little experience, however, bright future</li>
-        {% endif %}
-        {%if team_scoring <= 7 %}
-            <li class="list-group-item">Low scoring team</li>
-        {% endif %}
-        {%if team_passing <= 7 %}
-            <li class="list-group-item">Selfish team that passes poorly</li>
-        {% endif %}
-        {%if team_rebounding <= 7 %}
-            <li class="list-group-item">Will get outrebounded by most teams</li>
-        {% endif %}
-        {%if team_rtg < 8 %}
-            <li class="list-group-item">Low offensive and defensive rating</li>
-        {% endif %}
-        {%if team_turnOver < 8 %}
-            <li class="list-group-item">Team creates few  turnovers</li>
-        {% endif %}
-    </ul>
-    <h1>Team Overall:</h1>
-        <div class='container-sm'>
-            {% if team_overall < 8.3 %}
-                <h2>Team has lower than average overall</h2>
-            {% else %}
-                <h2>Team has higher than average overall</h2>
+    <div class="sal">
+        <h1>Pros:</h1>
+        <ul class="list-group">
+            {%if team_age > 25 %}
+                <li class="list-group-item">Older team meaning will have good experience</li>
             {% endif %}
-            
-        </div> 
+            {%if team_scoring > 7 %}
+                <li class="list-group-item">High scoring team</li>
+            {% endif %}
+            {%if team_passing > 7 %}
+                <li class="list-group-item">Selfless team that passes well</li>
+            {% endif %}
+            {%if team_rebounding > 7 %}
+                <li class="list-group-item">Will outrebound most teams</li>
+            {% endif %}
+            {%if team_rtg >= 8 %}
+                <li class="list-group-item">High offensive and defensive rating</li>
+            {% endif %}
+            {%if team_turnOver >= 8 %}
+                <li class="list-group-item">Team creates a lot of turnovers</li>
+            {% endif %}
+        </ul>
+        <h1>Cons:</h1>
+        <ul class="list-group">
+            {%if team_age <= 25 %}
+                <li class="list-group-item">Younger team meaning will have little experience, however, bright future</li>
+            {% endif %}
+            {%if team_scoring <= 7 %}
+                <li class="list-group-item">Low scoring team</li>
+            {% endif %}
+            {%if team_passing <= 7 %}
+                <li class="list-group-item">Selfish team that passes poorly</li>
+            {% endif %}
+            {%if team_rebounding <= 7 %}
+                <li class="list-group-item">Will get outrebounded by most teams</li>
+            {% endif %}
+            {%if team_rtg < 8 %}
+                <li class="list-group-item">Low offensive and defensive rating</li>
+            {% endif %}
+            {%if team_turnOver < 8 %}
+                <li class="list-group-item">Team creates few  turnovers</li>
+            {% endif %}
+        </ul>
+        <h1>Team Overall:</h1>
+            <div class='container-sm'>
+                {% if team_overall < 8.3 %}
+                    <h2>Team has lower than average overall</h2>
+                {% else %}
+                    <h2>Team has higher than average overall</h2>
+                {% endif %}
+                
+            </div> 
+    </div>
 </div>
 {% endblock %}

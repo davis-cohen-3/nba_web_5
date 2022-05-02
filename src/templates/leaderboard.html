@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style_analytics.css' %}">
+<div class="formcontainer">
+    <h3>Leaderboard</h3>
+</div>
+<table class="table table-dark table-striped" id="table1">
+    <thead>
+        <tr>
+          <th scope="col">team name</th>
+          <th scope="col">average age</th>
+          <th scope="col">average scoring</th>
+          <th scope="col">average passing</th>
+          <th scope="col">average rebounding</th>
+          <th scope="col">average off & def rating</th>
+          <th scope="col">average efficiency</th>
+          <th scope="col">average turnover_grade ability</th>
+          <th scope="col">average overall</th>
+          <th scope="col">total salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for team in team_ %}
+            <tr>
+                <td>{{team.team_name}}</td>
+                <td>{{team.mean_age}}</td>
+                <td>{{team.mean_scoring}}</td>
+                <td>{{team.mean_passing}}</td>
+                <td>{{team.mean_rebounding}}</td>
+                <td>{{team.mean_rating}}</td>
+                <td>{{team.mean_efficiency}}</td>
+                <td>{{team.mean_turnOver_grade}}</td>
+                <td>{{team.mean_overall}}</td>
+                <td>{{team.total_spendings}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table> 
+{% endblock %}

@@ -1,0 +1,71 @@
+.header1 {
+    font-family: "Gill Sans", sans-serif;
+    padding: 60px;
+    text-align: center;
+    background: #1abc9c;
+    color: white;
+    font-size: 30px;
+  }
+
+.formcontainer {
+  font-family: "Gill Sans", sans-serif;
+  padding: 60px;
+  text-align: center;
+  background: #4d60b6;
+  color: rgb(230, 105, 105);
+  position: relative;
+  font-size: 30px;
+}
+
+.fillInForm1 {
+  font-family: "Gill Sans", sans-serif;
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 20px;
+}
+
+.form-check1 {
+  font-family: "Gill Sans", sans-serif;
+  text-align: center;
+  font-size: 25px;
+  color: rgb(34, 27, 27);
+}
+
+.pickstat {
+  font-family: "Gill Sans", sans-serif;
+  text-align: justify;
+  font-size: 45px;
+  color: rgb(48, 45, 45);
+}
+.pickstat {
+  font-family: "Gill Sans", sans-serif;
+  text-align: justify;
+  font-size: 20px;
+  color: rgb(48, 45, 45);
+}
+
+.container-1 {
+  padding: 40px;
+}
+
+.fillInForm2 {
+  font-family: "Gill Sans", sans-serif;
+  padding: 60px;
+  text-align: center;
+  background: #d6a724;
+  color: white;
+  font-size: 20px;
+}
+
+.sal {
+  font-family: "Gill Sans", sans-serif;
+  text-align: justify;
+  font-size: 20px;
+  color: rgb(48, 45, 45);
+}
+
+.bg {
+  height: 50%;
+}

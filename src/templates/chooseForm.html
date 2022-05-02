@@ -1,21 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<link rel="stylesheet" type="text/css" href="style.css">
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style_analytics.css' %}">
     <div class="header1">
       <h1> Select form 1 or form 2</h1>
     </div>
     <form action='formChoice' method='POST'>{%csrf_token%}
-      <div class="form-check">
-        <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>Form 1
-        <label class="form-check-label" for="radio1"></label>
-      </div>
-      <div class="form-check">
-        <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">Form 2
-        <label class="form-check-label" for="radio2"></label>
-      </div>
-      <div class="col-auto my-1">
-        <button type="submit" class="btn btn-primary" value="save">Submit</button>
+      <div class='formcontainer'>
+        <div class="form-check">
+          <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>Form 1
+          <label class="form-check-label" for="radio1"></label>
+        </div>
+        <div class="form-check">
+          <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">Form 2
+          <label class="form-check-label" for="radio2"></label>
+        </div>
+        <div class="col-auto my-1">
+          <button type="submit" class="btn btn-primary" value="save">Submit</button>
+        </div>
       </div>
     </form>
 {% endblock %}
