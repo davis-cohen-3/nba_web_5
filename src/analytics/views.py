@@ -19,7 +19,7 @@ def chooseForm(request):
     else:
         return render(request, 'form2.html')
 
-
+# for first form
 def query(request):
     #declare all the form data
     if request.method == "POST":
@@ -321,7 +321,7 @@ def query(request):
     return render(request, 'home.html')
 
 
-
+# second form
 def query2(request):
     if request.method == "POST":
         print(request.POST.get("optradio"))

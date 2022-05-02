@@ -9,13 +9,14 @@ from django.contrib.auth.forms import UserCreationForm
 # from asyncio.windows_events import NULL
 
 # Create your views here.
-
+# renders the fantasy page with empty team
 def index(request):
     cap_space=20000
     return render(request, 'fantasyPage.html', {'cap_space':cap_space, 'player_count': 10})
 
+#add player function
 def addPlayer(request):
-    item = fanPlayer.objects.all().values()
+    item = fanPlayer.objects.all().values() #read in the team from database and convert to dataframe
     df = pd.DataFrame(item)
     playerName = request.POST.get('playerName_')
     player = df[df['name']==playerName]
@@ -50,6 +51,8 @@ def addPlayer(request):
             player_count = 10-len(team_df_)
             return render(request, 'fantasyPage.html', {'team_':team__,'cap_space':cap_space, 'player_count':player_count})
 
+#submitting team function which takes the team from the request data and inserts it into database
+#then generates report, logic is below for reporting
 def submit_team(request):
     team_ = team.objects.all().values() 
     team_df=pd.DataFrame(team_)
@@ -72,6 +75,7 @@ def submit_team(request):
     'team_overall':team_overall,'team_age':team_age,'team_scoring':team_scoring,'team_passing':team_passing,
     'team_rebounding':team_rebounding,'team_rtg':team_rtg,'team_eff':team_eff,'team_turnOver':team_turnOver, 'total_cap':total_cap})
 
+#leader board rendering
 def leaderboard(request):
     user_created_teams.objects.all().order_by('mean_overall')
     team_ = user_created_teams.objects.all()

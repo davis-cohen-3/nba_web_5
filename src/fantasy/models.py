@@ -8,7 +8,7 @@ from django.utils.translation import gettext as _
 
 
 # Create your models here.
-
+# player database with player rating not from team
 class fanPlayer (models.Model):
     name = models.CharField(_('Name'),max_length=255,default="")
     position = models.CharField(_('Position'),max_length=255,default="")
@@ -21,7 +21,7 @@ class fanPlayer (models.Model):
     turnover_grade = models.FloatField(_('Turnover_grade'),default=0)
     overall = models.FloatField(_('Overall'),default=0)
     salary = models.IntegerField(default=1000)
-
+#team database table
 class team (models.Model):
     name = models.CharField(_('Name'),max_length=255,default="")
     #position = models.CharField(_('Position'),max_length=255,default="")
@@ -35,6 +35,7 @@ class team (models.Model):
     overall = models.FloatField(_('Overall'),default=0)
     salary = models.IntegerField(default=0)
 
+#inserted team with rating of each team
 class user_created_teams (models.Model):
     team_name = models.CharField(_('Name'),max_length=255,default="")
     mean_age = models.FloatField(default=18)
